@@ -32,7 +32,6 @@ export default function TableInfo() {
                         <Table>
                             <TableHead>
                                 <TableRow>
-                                    <TableCell>ID Estudiante</TableCell>
                                     <TableCell>Nombre y apellidos</TableCell>
                                     <TableCell>Pago matrícula</TableCell>
                                     <TableCell>Acciones</TableCell>
@@ -41,7 +40,6 @@ export default function TableInfo() {
                             <TableBody>
                                 {students.map((row) => (
                                     <TableRow key={row.id_student}>
-                                        <TableCell>{row.id_student}</TableCell>
                                         <TableCell>{`${row.name} ${row.surname}`}</TableCell>
                                         <TableCell>{row.matricula_paid ? "✅" : "🔴"}</TableCell>
                                         <TableCell><div>
