@@ -1,0 +1,27 @@
+{
+  "name": "kopelia_server",
+  "version": "0.0.1",
+  "description": "apiServer from kopelia_server",
+  "main": "app.js",
+  "engines": {
+    "node": "12.x"
+  },
+  "scripts": {
+    "start": "nodemon app.js",
+    "start:dev": "npx nodemon --legacy-watch app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Almudena Grau",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "pg": "^8.11.1",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.32.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
