@@ -20,17 +20,16 @@ export default function ModalDelete({ openModal, handleDelete, idStudent }) {
                     borderRadius: 2,
                 }}
             >
-                <Typography component="div" variant="h6">Borrar estudiante</Typography>
+                <Typography component="div" variant="h6">Borrar estudiant</Typography>
                 <Typography component="div" sx={{ mt: 2 }}>
-                    <Box>{`Seguro que quieres borrar a `}
+                    <Box>{`Segur que vols eliminar a `}
                         <strong>{infoModalStudentToDelete.name}</strong>
                         {` `}
                         <strong>{infoModalStudentToDelete.surname}</strong>
-                        {` con id = `}
-                        <strong>{idStudent}</strong> </Box>
+                    </Box>
                 </Typography>
-                <Button onClick={() => handleDelete(false)} sx={{ mt: 2 }} variant="outlined">Cerrar</Button>
-                <Button onClick={() => handleDelete(true)} sx={{ mt: 2 }} variant="outlined">Borrar</Button>
+                <Button onClick={() => handleDelete(false)} sx={{ mt: 2 }} variant="outlined">Tancar</Button>
+                <Button onClick={() => handleDelete(true)} sx={{ mt: 2 }} variant="outlined">Eliminar</Button>
             </Box>
         </Modal>
     )

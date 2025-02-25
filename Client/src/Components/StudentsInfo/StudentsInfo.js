@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { deleteStudent } from '../../Redux/Actions/studentActions'
 import ModalDelete from '../ModalDelete/ModalDelete'
 
-export default function TableInfo() {
+export default function StudentsInfo() {
 
     const dispatch = useDispatch()
     const [openModalEditAdd, setOpenModalEditAdd] = useState(false) //modal addCreate
@@ -25,16 +25,16 @@ export default function TableInfo() {
             {<Button variant="outlined" onClick={() => {
                 setIdStudent(0)
                 setOpenModalEditAdd(!openModalEditAdd)
-            }}>Añadir estudiante</Button>}
+            }}>Afegir estudiant</Button>}
             {
                 (
                     <TableContainer component={Paper}>
                         <Table>
                             <TableHead>
                                 <TableRow>
-                                    <TableCell>Nombre y apellidos</TableCell>
-                                    <TableCell>Pago matrícula</TableCell>
-                                    <TableCell>Acciones</TableCell>
+                                    <TableCell>Nom i cognoms</TableCell>
+                                    <TableCell>Pagament matrícula</TableCell>
+                                    <TableCell>Accions</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>

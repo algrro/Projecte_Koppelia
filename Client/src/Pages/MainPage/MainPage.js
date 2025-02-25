@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react"
-import TableInfo from "../../Components/TableInfo/TableInfo"
+import StudentsInfo from "../../Components/StudentsInfo/StudentsInfo"
+import Charge from "../../Components/Charge/Charge"
 import { Tabs, Tab, Box, Typography } from "@mui/material"
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { fetchStudents } from '../../Redux/Actions/studentActions'
 
 function TabPanel({ children, value, index }) {
@@ -35,16 +36,18 @@ export default function MainPage() {
     <Box sx={{ width: "100%" }}>
       <Tabs value={value} onChange={handleChange} centered>
         <Tab label="Cobrar" />
-        <Tab label="Alumnado" />
+        <Tab label="Alumnat" />
         <Tab label="Matricular" />
-        <Tab label="Clases" />
-        <Tab label="Profesorado" />
+        <Tab label="Classes" />
+        <Tab label="Professorat" />
+        <Tab label="Preus" />
       </Tabs>
-      <TabPanel value={value} index={0}>Bienvenido a la página de inicio.</TabPanel>
-      <TabPanel value={value} index={1}><TableInfo /></TabPanel>
-      <TabPanel value={value} index={2}>Sobre nosotros...</TabPanel>
-      <TabPanel value={value} index={3}>Contáctanos en...</TabPanel>
-      <TabPanel value={value} index={4}>¿Necesitas ayuda? Aquí tienes...</TabPanel>
+      <TabPanel value={value} index={0}><Charge /></TabPanel>
+      <TabPanel value={value} index={1}><StudentsInfo /></TabPanel>
+      <TabPanel value={value} index={2}>Funcionalitat matricular</TabPanel>
+      <TabPanel value={value} index={3}>Llistat classes, com alumnes</TabPanel>
+      <TabPanel value={value} index={4}>Llistat professorat, com alumnes</TabPanel>
+      <TabPanel value={value} index={5}>Preus</TabPanel>
     </Box>
   )
 }

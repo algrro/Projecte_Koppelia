@@ -1,12 +1,9 @@
-import { createStore, applyMiddleware} from 'redux'
-import { combineReducers } from 'redux'
-import {thunk} from 'redux-thunk'
+import { configureStore } from '@reduxjs/toolkit'
 import studentReducer from './Reducers/studentReducer'
 
-const rootReducer = combineReducers({
-    student: studentReducer
+const store = configureStore({
+    reducer: {
+        student: studentReducer
+    }
 })
-
-const store = createStore(rootReducer, applyMiddleware(thunk))
-
 export default store

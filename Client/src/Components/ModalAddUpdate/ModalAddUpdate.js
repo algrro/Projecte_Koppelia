@@ -19,17 +19,12 @@ export default function ModalAdd({ openModal, idStudent, setOpenModalEditAdd }) 
 
     const handleEditOrAdd = (guardar) => {
         if (guardar) {
-            //función validar
+            //función validar formulario
             idStudent === 0 ? dispatch(addStudent(formData)) : dispatch(editStudent(formData))
         }
         setOpenModalEditAdd(false)
     }
-    /*
-    const handleSubmit = (event) => {
-      event.preventDefault()
-      console.log("submitttttt")
-    }
-    */
+   
     return (
         <Modal open={openModal} onClose={() => handleEditOrAdd(false)}>
             <Box
@@ -45,7 +40,7 @@ export default function ModalAdd({ openModal, idStudent, setOpenModalEditAdd }) 
                     borderRadius: 2,
                 }}
             >
-                <Typography component="div" variant="h6">{idStudent === 0 ? 'Añadir nuevo estudiante' : `Editar: ${student.name} ${student.surname}. Id: ${student.id_student}`}</Typography>
+                <Typography component="div" variant="h6">{idStudent === 0 ? 'Afegir estudiant' : `Editar: ${student.name} ${student.surname}.`}</Typography>
                 <Typography component="div" sx={{ mt: 2 }}>
                     <Box sx={{ width: '100%', maxWidth: 700, margin: 'auto', padding: 2, backgroundColor: 'lightblue' }}>
                         <form>
@@ -55,7 +50,7 @@ export default function ModalAdd({ openModal, idStudent, setOpenModalEditAdd }) 
                                 {/* Campo para el nombre del estudiante */}
                                 <Grid item xs={12}>
                                     <TextField
-                                        label="Nombre"
+                                        label="Nom"
                                         variant="outlined"
                                         fullWidth
                                         name="name"
@@ -67,7 +62,7 @@ export default function ModalAdd({ openModal, idStudent, setOpenModalEditAdd }) 
                                 {/* Campo para el apellido del estudiante */}
                                 <Grid item xs={12}>
                                     <TextField
-                                        label="Apellido"
+                                        label="Cognoms"
                                         variant="outlined"
                                         fullWidth
                                         name="surname"
@@ -85,7 +80,7 @@ export default function ModalAdd({ openModal, idStudent, setOpenModalEditAdd }) 
                                                 name="matricula_paid"
                                             />
                                         }
-                                        label="Matrícula Pagada"
+                                        label="Matrícula pagada"
                                     />
                                 </Grid>
 
@@ -98,7 +93,7 @@ export default function ModalAdd({ openModal, idStudent, setOpenModalEditAdd }) 
                                                 name="month_paid"
                                             />
                                         }
-                                        label="Mes Pagado"
+                                        label="Mes pagat"
                                     />
                                 </Grid>
 
@@ -111,7 +106,7 @@ export default function ModalAdd({ openModal, idStudent, setOpenModalEditAdd }) 
                                                 name="picture_permission"
                                             />
                                         }
-                                        label="Permiso para Foto"
+                                        label="Autoritza fotografies"
                                     />
                                 </Grid>
 
@@ -124,7 +119,7 @@ export default function ModalAdd({ openModal, idStudent, setOpenModalEditAdd }) 
                                                 name="family_disc"
                                             />
                                         }
-                                        label="Descuento familiar"
+                                        label="Descompte familiar"
                                     />
                                 </Grid>
 
@@ -132,19 +127,19 @@ export default function ModalAdd({ openModal, idStudent, setOpenModalEditAdd }) 
                                     <FormControlLabel
                                         control={
                                             <TextField
-                                                label="Fecha de Nacimiento"
+                                                label="Data de naixement"
                                                 type="date"
                                                 fullWidth
                                                 variant="outlined"
                                                 name="birth_date"
                                                 value={formData.birth_date || ''}
                                                 onChange={handleChange}
-                                                InputLabelProps={{
-                                                    shrink: true,
-                                                }}
+                                                //InputLabelProps={{
+                                                  //  shrink: true,
+                                                //}}
                                             />
                                         }
-                                        label="Fecha de Nacimiento"
+                                        label="Data de naixement"
                                     />
                                 </Grid>
 
@@ -173,7 +168,7 @@ export default function ModalAdd({ openModal, idStudent, setOpenModalEditAdd }) 
                                                 onChange={handleChange}
                                             />
                                         }
-                                        label="Teléfono"
+                                        label="Telèfon"
                                         labelPlacement="top"
                                     />
                                 </Grid>
@@ -203,7 +198,7 @@ export default function ModalAdd({ openModal, idStudent, setOpenModalEditAdd }) 
                                                 onChange={handleChange}
                                             />
                                         }
-                                        label="Contacto del Tutor"
+                                        label="Contacte del tutor"
                                         labelPlacement="top"
                                     />
                                 </Grid>
@@ -224,7 +219,7 @@ export default function ModalAdd({ openModal, idStudent, setOpenModalEditAdd }) 
                     </Box>
                 </Typography>
                 <Button onClick={() => handleEditOrAdd(false)} sx={{ mt: 2 }} variant="outlined">
-                    Cerrar
+                    Tancar
           </Button>
                 <Button onClick={() => handleEditOrAdd(true)} sx={{ mt: 2 }} variant="outlined">
                     Guardar
