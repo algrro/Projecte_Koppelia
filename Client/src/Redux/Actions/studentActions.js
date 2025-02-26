@@ -7,7 +7,9 @@ import {
   DELETE_STUDENT_SUCCESS,
   DELETE_STUDENT_FAILURE,
   EDIT_STUDENT_SUCCESS,
-  EDIT_STUDENT_FAILURE
+  EDIT_STUDENT_FAILURE,
+  INVOICE_STUDENT_SUCCESS,
+  INVOICE_STUDENT_FAILURE
 } from './constants'
 
 export const fetchStudents = () => async (dispatch) => {
@@ -69,6 +71,25 @@ export const deleteStudent = (id_student) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: DELETE_STUDENT_FAILURE,
+      payload: error.message
+    })
+  }
+}
+
+export const addInvoice = (studentEdited) => async (dispatch) => {
+  console.log("...ejecutando...addInvoice()")
+  console.log(studentEdited)
+  try {
+    const response = await axios.post(`http://localhost:9999/api/invoice/${studentEdited.id_student}`)
+    dispatch({
+      type: INVOICE_STUDENT_SUCCESS,
+      payload: response.data
+    })
+    console.log(response.data)
+    await dispatch(editStudent(studentEdited))
+  } catch (error) {
+    dispatch({
+      type: INVOICE_STUDENT_FAILURE,
       payload: error.message
     })
   }

@@ -1,12 +1,9 @@
 import React, { useState } from 'react'
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, IconButton } from '@mui/material'
 import PaymentIcon from '@mui/icons-material/Payment';
-import EditIcon from "@mui/icons-material/Edit";
-import ModalAdd from "../ModalAddUpdate/ModalAddUpdate"
-import { useDispatch, useSelector } from 'react-redux'
-import { deleteStudent } from '../../Redux/Actions/studentActions'
-import ModalDelete from '../ModalDelete/ModalDelete'
+import { useSelector } from 'react-redux'
 import ModalMatricula from '../ModalMatricula/ModalMatricula';
+import MonthInvoice from '../MonthInvoice/MonthInvoice';
 
 export default function Charge() {
 
@@ -17,8 +14,6 @@ export default function Charge() {
 
     return (
         <>
-
-            
             <TableContainer component={Paper}>
                 <Table>
                     <TableHead>
@@ -34,45 +29,43 @@ export default function Charge() {
                             .map((row) => (
                                 <TableRow key={row.id_student}>
                                     <TableCell>{`${row.name} ${row.surname}`}</TableCell>
-                                    
-                                    
                                     <TableCell>
                                         <div>{row.matricula_paid ? "✅" : "🔴"}
                                             {
-                                                !row.matricula_paid && (<IconButton color="primary" 
-                                                onClick={
-                                                    () => {
-                                                        setIdStudent(row.id_student)
-                                                        setOpenModalMatricula(!openModalMatricula)
-                                                    }
-                                                }>
+                                                !row.matricula_paid && (<IconButton color="primary"
+                                                    onClick={
+                                                        () => {
+                                                            setIdStudent(row.id_student)
+                                                            setOpenModalMatricula(!openModalMatricula)
+                                                        }
+                                                    }>
                                                     <PaymentIcon />
                                                 </IconButton>)
                                             }
                                         </div>
                                     </TableCell>
-                                    
-                                    
-                                    
                                     <TableCell>
                                         <div>{row.month_paid ? "✅" : "🔴"}
                                             {
-                                                !row.month_paid && (<IconButton color="primary">
+                                                !row.month_paid && (<IconButton color="secondary"
+                                                    onClick={
+                                                        () => {
+                                                            setIdStudent(row.id_student)
+                                                            setOpenModalMonth(!openModalMonth)
+                                                        }
+                                                    }>
                                                     <PaymentIcon />
                                                 </IconButton>)
                                             }
                                         </div>
                                     </TableCell>
-
                                 </TableRow>
                             ))}
                     </TableBody>
                 </Table>
             </TableContainer>
-            
-
             {openModalMatricula && <ModalMatricula openModal={openModalMatricula} idStudent={idStudent} setOpenModalMatricula={setOpenModalMatricula} />}
-            {/* {openModalDelete && <ModalDelete openModal={openModalDelete} handleDelete={handleDelete} idStudent={idStudent} />} */}
+            {openModalMonth && <MonthInvoice openModal={openModalMonth} idStudent={idStudent} setOpenModalMonth={setOpenModalMonth} />}
         </>
     )
 }

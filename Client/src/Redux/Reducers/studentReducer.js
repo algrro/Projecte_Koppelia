@@ -6,7 +6,9 @@ import {
   DELETE_STUDENT_SUCCESS,
   DELETE_STUDENT_FAILURE,
   EDIT_STUDENT_SUCCESS,
-  EDIT_STUDENT_FAILURE
+  EDIT_STUDENT_FAILURE,
+  INVOICE_STUDENT_SUCCESS,
+  INVOICE_STUDENT_FAILURE
 } from '../Actions/constants'
 
 const initialState = {
@@ -58,6 +60,7 @@ const studentReducer = (state = initialState, action) => {
     case CREATE_STUDENT_FAILURE:
     case DELETE_STUDENT_FAILURE:
     case EDIT_STUDENT_FAILURE:
+    case INVOICE_STUDENT_FAILURE:
       return { ...state, error: action.payload, loading: false }
     default:
       return state
