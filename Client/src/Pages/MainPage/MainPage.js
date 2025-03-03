@@ -3,7 +3,7 @@ import StudentsInfo from "../../Components/StudentsInfo/StudentsInfo"
 import Charge from "../../Components/Charge/Charge"
 import { Tabs, Tab, Box, Typography } from "@mui/material"
 import { useDispatch } from 'react-redux'
-import { fetchStudents } from '../../Redux/Actions/studentActions'
+import { fetchClassrooms, fetchStudentClassrooms, fetchStudents } from '../../Redux/Actions/studentActions'
 
 function TabPanel({ children, value, index }) {
   return (
@@ -24,6 +24,8 @@ export default function MainPage() {
   //LLAMADA PRINCIPAL AL SERVIDOR PARA OBTENER LOS ESTADOS
   useEffect(() => {
     dispatch(fetchStudents())
+    dispatch(fetchClassrooms())
+    dispatch(fetchStudentClassrooms())
   }, [dispatch]) // Solo se ejecuta una vez cuando el componente se monta
 
   const [value, setValue] = useState(0)
@@ -43,8 +45,8 @@ export default function MainPage() {
         <Tab label="Preus" />
       </Tabs>
       <TabPanel value={value} index={0}><Charge /></TabPanel>
-      <TabPanel value={value} index={1}><StudentsInfo /></TabPanel>
-      <TabPanel value={value} index={2}>Funcionalitat matricular</TabPanel>
+      <TabPanel value={value} index={1}><StudentsInfo isSign={false}/></TabPanel>
+      <TabPanel value={value} index={2}><StudentsInfo isSign={true}/></TabPanel>
       <TabPanel value={value} index={3}>Llistat classes, com alumnes</TabPanel>
       <TabPanel value={value} index={4}>Llistat professorat, com alumnes</TabPanel>
       <TabPanel value={value} index={5}>Preus</TabPanel>

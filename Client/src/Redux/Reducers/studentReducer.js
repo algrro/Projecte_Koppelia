@@ -8,12 +8,17 @@ import {
   EDIT_STUDENT_SUCCESS,
   EDIT_STUDENT_FAILURE,
   INVOICE_STUDENT_SUCCESS,
-  INVOICE_STUDENT_FAILURE
+  INVOICE_STUDENT_FAILURE,
+  LIST_CLASSROOMS_SUCCESS,
+  LIST_CLASSROOMS_FAILURE,
+  STUDENTS_CLASSROOMS_SUCCESS,
+  STUDENTS_CLASSROOMS_FAILURE
 } from '../Actions/constants'
 
 const initialState = {
   students: [],
   studentsClassroom: [],
+  classrooms: [],
   currentStudent: {
     name: 'Nuevo',
     surname: '',
@@ -40,9 +45,7 @@ const studentReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_STUDENTS_SUCCESS:
       console.log(action.type)
-      const { students, st_class } = action.payload
-      const studentClassroomIds = new Set(st_class.map(s => s.id_student))
-      return { ...state, students: students, studentsClassroom: Array.from(studentClassroomIds) }
+      return { ...state, students: action.payload }
     case CREATE_STUDENT_SUCCESS:
       console.log(action.type)
       return { ...state, students: [...state.students, action.payload] }
@@ -61,11 +64,25 @@ const studentReducer = (state = initialState, action) => {
         ...state,
         currentInvoice: { ...action.payload }
       }
+    case LIST_CLASSROOMS_SUCCESS:
+      console.log(action.type)
+      return {
+        ...state,
+        classrooms: action.payload
+      }
+    case STUDENTS_CLASSROOMS_SUCCESS:
+      console.log(action.type)
+      return {
+        ...state,
+        studentsClassroom: action.payload
+      }
     case FETCH_STUDENTS_FAILURE:
     case CREATE_STUDENT_FAILURE:
     case DELETE_STUDENT_FAILURE:
     case EDIT_STUDENT_FAILURE:
     case INVOICE_STUDENT_FAILURE:
+    case LIST_CLASSROOMS_FAILURE:
+    case STUDENTS_CLASSROOMS_FAILURE:
       return { ...state, error: action.payload }
     default:
       return state

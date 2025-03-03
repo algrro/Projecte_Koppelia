@@ -24,7 +24,7 @@ export default function Charge() {
                     </TableHead>
                     <TableBody>
                         {students
-                            .filter(row => (!row.month_paid || !row.matricula_paid) && studentsClassroom.includes(row.id_student))
+                            .filter(row => (!row.month_paid || !row.matricula_paid) && studentsClassroom.some(item => item.id_student === row.id_student))
                             .map((row) => (
                                 <TableRow key={row.id_student}>
                                     <TableCell>{`${row.name} ${row.surname}`}</TableCell>

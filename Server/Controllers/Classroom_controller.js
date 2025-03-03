@@ -6,7 +6,7 @@ exports.getClassrooms = (_, res) => {
 	Classroom.findAll()
 		.then((response) => {
 			let arrayResponse = JSON.parse(JSON.stringify(response))
-			res.status(200).send({ classrooms: arrayResponse })
+			res.status(200).send( arrayResponse )
 		})
 		.catch((err) => {
 			res.status(500).send({ err_message: err })

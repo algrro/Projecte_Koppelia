@@ -9,20 +9,20 @@ import {
   EDIT_STUDENT_SUCCESS,
   EDIT_STUDENT_FAILURE,
   INVOICE_STUDENT_SUCCESS,
-  INVOICE_STUDENT_FAILURE
+  INVOICE_STUDENT_FAILURE,
+  LIST_CLASSROOMS_SUCCESS,
+  LIST_CLASSROOMS_FAILURE,
+  STUDENTS_CLASSROOMS_SUCCESS,
+  STUDENTS_CLASSROOMS_FAILURE
 } from './constants'
 
 export const fetchStudents = () => async (dispatch) => {
   console.log("...ejecutando...fetchStudents()")
   try {
     const response = await axios.get('http://localhost:9999/api/student')
-    const response2 = await axios.get('http://localhost:9999/api/student_classroom')
     dispatch({
       type: FETCH_STUDENTS_SUCCESS,
-      payload: {
-        students: response.data,
-        st_class: response2.data
-      }
+      payload: response.data
     })
   } catch (error) {
     dispatch({
@@ -95,5 +95,37 @@ export const addInvoice = (idStudent) => async (dispatch) => {
       payload: error.message
     })
     return Promise.reject(error)
+  }
+}
+
+export const fetchClassrooms = () => async (dispatch) => {
+  console.log("...ejecutando...fetchClassrooms()")
+  try {
+    const response = await axios.get('http://localhost:9999/api/classroom')
+    dispatch({
+      type: LIST_CLASSROOMS_SUCCESS,
+      payload: response.data
+    })
+  } catch (error) {
+    dispatch({
+      type: LIST_CLASSROOMS_FAILURE,
+      payload: error.message
+    })
+  }
+}
+
+export const fetchStudentClassrooms = () => async (dispatch) => {
+  console.log("...ejecutando...fetchStudentClassrooms()")
+  try {
+    const response = await axios.get('http://localhost:9999/api/student_classroom')
+    dispatch({
+      type: STUDENTS_CLASSROOMS_SUCCESS,
+      payload: response.data
+    })
+  } catch (error) {
+    dispatch({
+      type: STUDENTS_CLASSROOMS_FAILURE,
+      payload: error.message
+    })
   }
 }
