@@ -66,8 +66,9 @@ exports.addInvoice = async (req, res) => {
                     date: new DATEONLY(),
                     id_student: studentInfo.id_student,
                 })
-                await studentData.update({ month_paid: true })
-                res.status(200).send("Se ha insertado la factura")
+                //await studentData.update({ month_paid: true })
+                const invoice = {...result, name: studentInfo.name, surname: studentInfo.surname, date: new Date(), idStudent: studentInfo.id_student}
+                res.status(200).send(invoice)
             } else {
                 res.status(200).send(`La alumna ${studentInfo.name} ${studentInfo.surname} no está matriculada en ninguna clase`)
             }

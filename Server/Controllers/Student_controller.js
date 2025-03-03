@@ -102,12 +102,12 @@ exports.editStudent = async (req, res) => {
 			where: { id_student: studentId }
 		})
 		if (updated) {
-			const updatedStudent = await Student.findByPk(studentId);
-			res.status(200).send(updatedStudent);
+			const updatedStudent = await Student.findByPk(studentId)
+			res.status(200).send(updatedStudent)
 		} else {
-			res.status(200).send({ message: "Estudiante no encontrado" });
+			res.status(200).send({ message: "Estudiante no encontrado" })
 		}
 	} catch (err) {
-		res.status(500).send({ err_message: err });
+		res.status(500).send({ err_message: err })
 	}
-};
+}

@@ -1,19 +1,29 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Modal, Box, Typography, Button, Checkbox, FormControlLabel } from '@mui/material'
 import { useSelector, useDispatch } from 'react-redux'
-import { addInvoice } from '../../Redux/Actions/studentActions'
+import { addInvoice, editStudent } from '../../Redux/Actions/studentActions'
+import { generatePDF } from '../../Utils/generatePdf'
 
 export default function MonthInvoice({ openModal, idStudent, setOpenModalMonth }) {
 
     const dispatch = useDispatch()
     const student = useSelector(item => idStudent === 0 ? item.student.currentStudent : item.student.students.find((element) => element.id_student === idStudent))
     const [printPdf, setPrintPdf] = useState(false)
+    const [invoice, setInvoice] = useState(-1)
 
-    const handlePay = async (guardar) => {
+    useEffect(() => {
+        const fetchInvoice = async () => {
+            const data = await dispatch(addInvoice(idStudent))
+            setInvoice(data)
+        }
+        fetchInvoice()
+    }, [dispatch, idStudent])
+
+    const handlePay = (guardar) => {
         if (guardar) {
-            const updatedDate = { ...student, month_paid: true }
-            console.log(updatedDate)
-            await dispatch(addInvoice(updatedDate))
+            const updatedStudent = { ...student, month_paid: true }
+            dispatch(editStudent(updatedStudent))
+            printPdf && generatePDF(invoice)
         }
         setOpenModalMonth(false)
     }
@@ -33,14 +43,9 @@ export default function MonthInvoice({ openModal, idStudent, setOpenModalMonth }
                     borderRadius: 2,
                 }}
             >
-                <Typography component="div" variant="h6">Pagament matrícula</Typography>
+                <Typography component="div" variant="h6">Pagament mes</Typography>
                 <Typography component="div" sx={{ mt: 2 }}>
-                    <Box>{`El/la estudiant: `}
-                        <strong>{student.name}</strong>
-                        {` `}
-                        <strong>{student.surname}</strong>
-                        {"ha paga la quota del mes?"}
-                    </Box>
+                    <Box>{"Total factura a pagar: "}<strong>{`${invoice.Price} €`}</strong></Box>
                 </Typography>
                 <FormControlLabel
                     control={
@@ -53,7 +58,7 @@ export default function MonthInvoice({ openModal, idStudent, setOpenModalMonth }
                     label="Imprimir pdf factura"
                 />
                 <Button onClick={() => handlePay(false)} sx={{ mt: 2 }} variant="outlined">No</Button>
-                <Button onClick={() => handlePay(true)} sx={{ mt: 2 }} variant="outlined">Sí</Button>
+                <Button onClick={() => handlePay(true)} sx={{ mt: 2 }} variant="outlined">Paga</Button>
             </Box>
         </Modal>
     )

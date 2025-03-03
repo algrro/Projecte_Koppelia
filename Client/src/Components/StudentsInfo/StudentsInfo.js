@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, IconButton } from '@mui/material'
-import DeleteIcon from "@mui/icons-material/Delete";
-import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete"
+import EditIcon from "@mui/icons-material/Edit"
 import ModalAdd from "../ModalAddUpdate/ModalAddUpdate"
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteStudent } from '../../Redux/Actions/studentActions'
@@ -18,7 +18,7 @@ export default function StudentsInfo() {
     const handleDelete = (action) => {
         setOpenModalDelete(!openModalDelete)
         action && dispatch(deleteStudent(idStudent))
-    };
+    }
 
     return (
         <>

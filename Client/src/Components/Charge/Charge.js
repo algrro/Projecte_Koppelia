@@ -1,17 +1,16 @@
 import React, { useState } from 'react'
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, IconButton } from '@mui/material'
-import PaymentIcon from '@mui/icons-material/Payment';
+import PaymentIcon from '@mui/icons-material/Payment'
 import { useSelector } from 'react-redux'
-import ModalMatricula from '../ModalMatricula/ModalMatricula';
-import MonthInvoice from '../MonthInvoice/MonthInvoice';
+import ModalMatricula from '../ModalMatricula/ModalMatricula'
+import MonthInvoice from '../MonthInvoice/MonthInvoice'
 
 export default function Charge() {
 
     const [openModalMatricula, setOpenModalMatricula] = useState(false)
     const [openModalMonth, setOpenModalMonth] = useState(false)
     const [idStudent, setIdStudent] = useState(0)
-    const { students } = useSelector(state => state.student)
-
+    const { students, studentsClassroom } = useSelector(state => state.student)
     return (
         <>
             <TableContainer component={Paper}>
@@ -25,7 +24,7 @@ export default function Charge() {
                     </TableHead>
                     <TableBody>
                         {students
-                            .filter(row => !row.month_paid || !row.matricula_paid)
+                            .filter(row => (!row.month_paid || !row.matricula_paid) && studentsClassroom.includes(row.id_student))
                             .map((row) => (
                                 <TableRow key={row.id_student}>
                                     <TableCell>{`${row.name} ${row.surname}`}</TableCell>
