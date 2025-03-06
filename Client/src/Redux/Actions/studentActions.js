@@ -13,7 +13,9 @@ import {
   LIST_CLASSROOMS_SUCCESS,
   LIST_CLASSROOMS_FAILURE,
   STUDENTS_CLASSROOMS_SUCCESS,
-  STUDENTS_CLASSROOMS_FAILURE
+  STUDENTS_CLASSROOMS_FAILURE,
+  SIGN_CLASSROOMS_SUCCESS,
+  SIGN_CLASSROOMS_FAILURE
 } from './constants'
 
 export const fetchStudents = () => async (dispatch) => {
@@ -125,6 +127,22 @@ export const fetchStudentClassrooms = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: STUDENTS_CLASSROOMS_FAILURE,
+      payload: error.message
+    })
+  }
+}
+
+export const signClassrooms = (info) => async (dispatch) => {
+  console.log("...ejecutando...signClassrooms(info)")
+  try {
+    const response = await axios.post('http://localhost:9999/api/student_classroom/sign', info)
+    dispatch({
+      type: SIGN_CLASSROOMS_SUCCESS,
+      payload: response.data
+    })
+  } catch (error) {
+    dispatch({
+      type: SIGN_CLASSROOMS_FAILURE,
       payload: error.message
     })
   }

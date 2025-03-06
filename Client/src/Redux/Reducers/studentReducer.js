@@ -12,7 +12,9 @@ import {
   LIST_CLASSROOMS_SUCCESS,
   LIST_CLASSROOMS_FAILURE,
   STUDENTS_CLASSROOMS_SUCCESS,
-  STUDENTS_CLASSROOMS_FAILURE
+  STUDENTS_CLASSROOMS_FAILURE,
+  SIGN_CLASSROOMS_SUCCESS,
+  SIGN_CLASSROOMS_FAILURE
 } from '../Actions/constants'
 
 const initialState = {
@@ -76,6 +78,18 @@ const studentReducer = (state = initialState, action) => {
         ...state,
         studentsClassroom: action.payload
       }
+    case SIGN_CLASSROOMS_SUCCESS:
+      console.log(action.type);
+      return {
+        ...state,
+        studentsClassroom: [
+          ...state.studentsClassroom.filter(entry => entry.id_student !== action.payload.id_student),
+          ...action.payload.id_enrolled.map(classId => ({
+            id_student: action.payload.id_student,
+            id_classroom: classId
+          }))
+        ]
+      }
     case FETCH_STUDENTS_FAILURE:
     case CREATE_STUDENT_FAILURE:
     case DELETE_STUDENT_FAILURE:
@@ -83,6 +97,7 @@ const studentReducer = (state = initialState, action) => {
     case INVOICE_STUDENT_FAILURE:
     case LIST_CLASSROOMS_FAILURE:
     case STUDENTS_CLASSROOMS_FAILURE:
+    case SIGN_CLASSROOMS_FAILURE:
       return { ...state, error: action.payload }
     default:
       return state

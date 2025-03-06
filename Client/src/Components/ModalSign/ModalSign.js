@@ -1,11 +1,12 @@
 import React, { useState } from "react"
 import { Modal, Box, Typography, Button, Checkbox, TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody } from "@mui/material"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+import { signClassrooms } from "../../Redux/Actions/studentActions"
 
 export default function ModalSign({ openModal, idStudent, setOpenModalSign }) {
 
-    const { classrooms } = useSelector(state => state.student)
-    const { studentsClassroom } = useSelector(state => state.student)
+    const dispatch = useDispatch()
+    const { classrooms, studentsClassroom } = useSelector(state => state.student)
     const [selectedRows, setSelectedRows] = useState(studentsClassroom.filter((element) => element.id_student === idStudent).map((item) => item.id_classroom))
 
     const handleSelect = (id) => {
@@ -14,9 +15,15 @@ export default function ModalSign({ openModal, idStudent, setOpenModalSign }) {
         )
     }
 
-    const handleConfirm = (guardar) => {
+    const handleConfirm = async (guardar) => {
         if (guardar) {
-            console.log("Selected rows:", selectedRows)
+            const unselectedRows = classrooms.map((el) => el.id_classroom).filter((el) => !selectedRows.includes(el))
+            const body = {
+                id_student: idStudent,
+                id_classroom_enroll: selectedRows,
+                id_classroom_unenroll: unselectedRows
+            }
+            await dispatch(signClassrooms(body))
         }
         setOpenModalSign(false)
     }
