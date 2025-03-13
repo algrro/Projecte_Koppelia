@@ -14,13 +14,18 @@ import {
   STUDENTS_CLASSROOMS_SUCCESS,
   STUDENTS_CLASSROOMS_FAILURE,
   SIGN_CLASSROOMS_SUCCESS,
-  SIGN_CLASSROOMS_FAILURE
+  SIGN_CLASSROOMS_FAILURE,
+  FETCH_PRICES_SUCCESS,
+  FETCH_PRICES_FAILURE,
+  UPDATE_PRICES_SUCCESS,
+  UPDATE_PRICES_FAILURE
 } from '../Actions/constants'
 
 const initialState = {
   students: [],
   studentsClassroom: [],
   classrooms: [],
+  prices: [],
   currentStudent: {
     name: 'Nuevo',
     surname: '',
@@ -90,6 +95,12 @@ const studentReducer = (state = initialState, action) => {
           }))
         ]
       }
+    case FETCH_PRICES_SUCCESS:
+      console.log(action.type)
+      return { ...state, prices: action.payload }
+    case UPDATE_PRICES_SUCCESS:
+      console.log(action.type)
+      return { ...state, prices: action.payload}
     case FETCH_STUDENTS_FAILURE:
     case CREATE_STUDENT_FAILURE:
     case DELETE_STUDENT_FAILURE:
@@ -98,6 +109,8 @@ const studentReducer = (state = initialState, action) => {
     case LIST_CLASSROOMS_FAILURE:
     case STUDENTS_CLASSROOMS_FAILURE:
     case SIGN_CLASSROOMS_FAILURE:
+    case FETCH_PRICES_FAILURE:
+    case UPDATE_PRICES_FAILURE:
       return { ...state, error: action.payload }
     default:
       return state
