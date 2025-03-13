@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Modal, Box, Typography, Button, Checkbox, FormControlLabel } from '@mui/material'
 import { useSelector, useDispatch } from 'react-redux'
-import { addInvoice, editStudent } from '../../Redux/Actions/studentActions'
+import { addInvoice, editStudent, deleteInvoice } from '../../Redux/Actions/studentActions'
 import { generatePDF } from '../../Utils/generatePdf'
 
 export default function MonthInvoice({ openModal, idStudent, setOpenModalMonth }) {
@@ -24,6 +24,8 @@ export default function MonthInvoice({ openModal, idStudent, setOpenModalMonth }
             const updatedStudent = { ...student, month_paid: true }
             dispatch(editStudent(updatedStudent))
             printPdf && generatePDF(invoice)
+        } else {
+            dispatch(deleteInvoice(invoice.idInvoice))
         }
         setOpenModalMonth(false)
     }

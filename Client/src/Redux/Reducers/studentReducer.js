@@ -18,7 +18,9 @@ import {
   FETCH_PRICES_SUCCESS,
   FETCH_PRICES_FAILURE,
   UPDATE_PRICES_SUCCESS,
-  UPDATE_PRICES_FAILURE
+  UPDATE_PRICES_FAILURE,
+  DELETE_INVOICE_SUCCESS,
+  DELETE_INVOICE_FAILURE
 } from '../Actions/constants'
 
 const initialState = {
@@ -71,6 +73,9 @@ const studentReducer = (state = initialState, action) => {
         ...state,
         currentInvoice: { ...action.payload }
       }
+    case DELETE_INVOICE_SUCCESS:
+      console.log(action.type)
+      return { ...state, currentInvoice: { name: '', total: 0, concept: '', date: '' } }
     case LIST_CLASSROOMS_SUCCESS:
       console.log(action.type)
       return {
@@ -100,7 +105,7 @@ const studentReducer = (state = initialState, action) => {
       return { ...state, prices: action.payload }
     case UPDATE_PRICES_SUCCESS:
       console.log(action.type)
-      return { ...state, prices: action.payload}
+      return { ...state, prices: action.payload }
     case FETCH_STUDENTS_FAILURE:
     case CREATE_STUDENT_FAILURE:
     case DELETE_STUDENT_FAILURE:
@@ -111,6 +116,7 @@ const studentReducer = (state = initialState, action) => {
     case SIGN_CLASSROOMS_FAILURE:
     case FETCH_PRICES_FAILURE:
     case UPDATE_PRICES_FAILURE:
+    case DELETE_INVOICE_FAILURE:
       return { ...state, error: action.payload }
     default:
       return state

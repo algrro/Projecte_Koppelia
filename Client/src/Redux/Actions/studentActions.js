@@ -19,7 +19,9 @@ import {
   FETCH_PRICES_SUCCESS,
   FETCH_PRICES_FAILURE,
   UPDATE_PRICES_SUCCESS,
-  UPDATE_PRICES_FAILURE
+  UPDATE_PRICES_FAILURE,
+  DELETE_INVOICE_SUCCESS,
+  DELETE_INVOICE_FAILURE
 } from './constants'
 
 export const fetchStudents = () => async (dispatch) => {
@@ -101,6 +103,22 @@ export const addInvoice = (idStudent) => async (dispatch) => {
       payload: error.message
     })
     return Promise.reject(error)
+  }
+}
+
+export const deleteInvoice = (id_invoice) => async (dispatch) => {
+  console.log("...ejecutando...deleteInvoice(id_invoice)")
+  try {
+    const response = await axios.delete(`http://localhost:9999/api/invoice/${id_invoice}`)
+    dispatch({
+      type: DELETE_INVOICE_SUCCESS,
+      payload: response.data
+    })
+  } catch (error) {
+    dispatch({
+      type: DELETE_INVOICE_FAILURE,
+      payload: error.message
+    })
   }
 }
 

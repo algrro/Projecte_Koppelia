@@ -60,14 +60,14 @@ exports.addInvoice = async (req, res) => {
                     studentInfo.family_disc
                 )
 
-                await Invoice.create({
+                const newInvoice = await Invoice.create({
                     total: result.Price,
                     concept: result.Concept,
                     date: new DATEONLY(),
                     id_student: studentInfo.id_student,
                 })
                 //await studentData.update({ month_paid: true })
-                const invoice = {...result, name: studentInfo.name, surname: studentInfo.surname, date: new Date(), idStudent: studentInfo.id_student}
+                const invoice = {...result, name: studentInfo.name, surname: studentInfo.surname, date: new Date(), idStudent: studentInfo.id_student, idInvoice: newInvoice.id_invoice}
                 res.status(200).send(invoice)
             } else {
                 res.status(200).send(`La alumna ${studentInfo.name} ${studentInfo.surname} no está matriculada en ninguna clase`)
