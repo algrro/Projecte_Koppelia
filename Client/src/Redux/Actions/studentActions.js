@@ -21,7 +21,11 @@ import {
   UPDATE_PRICES_SUCCESS,
   UPDATE_PRICES_FAILURE,
   DELETE_INVOICE_SUCCESS,
-  DELETE_INVOICE_FAILURE
+  DELETE_INVOICE_FAILURE,
+  FETCH_TEACHERS_SUCCESS,
+  FETCH_TEACHERS_FAILURE,
+  UPDATE_TEACHERS_SUCCESS,
+  UPDATE_TEACHERS_FAILURE
 } from './constants'
 
 export const fetchStudents = () => async (dispatch) => {
@@ -197,6 +201,38 @@ export const updatePrices = (newPrices) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: UPDATE_PRICES_FAILURE,
+      payload: error.message
+    })
+  }
+}
+
+export const fetchTeachers = () => async (dispatch) => {
+  console.log("...ejecutando...fetchTeachers()")
+  try {
+    const response = await axios.get('http://localhost:9999/api/teacher')
+    dispatch({
+      type: FETCH_TEACHERS_SUCCESS,
+      payload: response.data
+    })
+  } catch (error) {
+    dispatch({
+      type: FETCH_TEACHERS_FAILURE,
+      payload: error.message
+    })
+  }
+}
+
+export const updateTeachers = (newTeachers) => async (dispatch) => {
+  console.log("...ejecutando...updateTeachers(newTeachers)")
+  try {
+    const response = await axios.post('http://localhost:9999/api/teacher/update', newTeachers)
+    dispatch({
+      type: UPDATE_TEACHERS_SUCCESS,
+      payload: response.data
+    })
+  } catch (error) {
+    dispatch({
+      type: UPDATE_TEACHERS_FAILURE,
       payload: error.message
     })
   }

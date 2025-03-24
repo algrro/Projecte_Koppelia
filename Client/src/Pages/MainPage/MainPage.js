@@ -4,7 +4,8 @@ import Charge from "../../Components/Charge/Charge"
 import Price from "../../Components/Price/Price"
 import { Tabs, Tab, Box, Typography } from "@mui/material"
 import { useDispatch } from 'react-redux'
-import { fetchClassrooms, fetchPrices, fetchStudentClassrooms, fetchStudents } from '../../Redux/Actions/studentActions'
+import { fetchClassrooms, fetchPrices, fetchStudentClassrooms, fetchStudents, fetchTeachers } from '../../Redux/Actions/studentActions'
+import Teacher from "../../Components/Teacher/Teacher"
 
 function TabPanel({ children, value, index }) {
   return (
@@ -28,6 +29,7 @@ export default function MainPage() {
     dispatch(fetchClassrooms())
     dispatch(fetchStudentClassrooms())
     dispatch(fetchPrices())
+    dispatch(fetchTeachers())
   }, [dispatch]) // Solo se ejecuta una vez cuando el componente se monta
 
   const [value, setValue] = useState(0)
@@ -47,10 +49,10 @@ export default function MainPage() {
         <Tab label="Preus" />
       </Tabs>
       <TabPanel value={value} index={0}><Charge /></TabPanel>
-      <TabPanel value={value} index={1}><StudentsInfo isSign={false}/></TabPanel>
-      <TabPanel value={value} index={2}><StudentsInfo isSign={true}/></TabPanel>
+      <TabPanel value={value} index={1}><StudentsInfo isSign={false} /></TabPanel>
+      <TabPanel value={value} index={2}><StudentsInfo isSign={true} /></TabPanel>
       <TabPanel value={value} index={3}>Llistat classes, com alumnes</TabPanel>
-      <TabPanel value={value} index={4}>Llistat professorat, com alumnes</TabPanel>
+      <TabPanel value={value} index={4}><Teacher /></TabPanel>
       <TabPanel value={value} index={5}><Price /></TabPanel>
     </Box>
   )
