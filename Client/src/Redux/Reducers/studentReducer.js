@@ -24,7 +24,9 @@ import {
   FETCH_TEACHERS_SUCCESS,
   FETCH_TEACHERS_FAILURE,
   UPDATE_TEACHERS_SUCCESS,
-  UPDATE_TEACHERS_FAILURE
+  UPDATE_TEACHERS_FAILURE,
+  UPDATE_CLASSROOMS_SUCCESS,
+  UPDATE_CLASSROOMS_FAILURE
 } from '../Actions/constants'
 
 const initialState = {
@@ -116,7 +118,10 @@ const studentReducer = (state = initialState, action) => {
       return { ...state, teachers: action.payload }
     case UPDATE_TEACHERS_SUCCESS:
       console.log(action.type)
-      return { ...state, teachers: action.payload}
+      return { ...state, teachers: action.payload }
+    case UPDATE_CLASSROOMS_SUCCESS:
+      console.log(action.type)
+      return { ...state, classrooms: action.payload }
     case FETCH_STUDENTS_FAILURE:
     case CREATE_STUDENT_FAILURE:
     case DELETE_STUDENT_FAILURE:
@@ -130,6 +135,7 @@ const studentReducer = (state = initialState, action) => {
     case DELETE_INVOICE_FAILURE:
     case FETCH_TEACHERS_FAILURE:
     case UPDATE_TEACHERS_FAILURE:
+    case UPDATE_CLASSROOMS_FAILURE:
       return { ...state, error: action.payload }
     default:
       return state

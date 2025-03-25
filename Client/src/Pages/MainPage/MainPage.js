@@ -6,6 +6,7 @@ import { Tabs, Tab, Box, Typography } from "@mui/material"
 import { useDispatch } from 'react-redux'
 import { fetchClassrooms, fetchPrices, fetchStudentClassrooms, fetchStudents, fetchTeachers } from '../../Redux/Actions/studentActions'
 import Teacher from "../../Components/Teacher/Teacher"
+import Classroom from "../../Components/Classroom/Classrroom"
 
 function TabPanel({ children, value, index }) {
   return (
@@ -51,7 +52,7 @@ export default function MainPage() {
       <TabPanel value={value} index={0}><Charge /></TabPanel>
       <TabPanel value={value} index={1}><StudentsInfo isSign={false} /></TabPanel>
       <TabPanel value={value} index={2}><StudentsInfo isSign={true} /></TabPanel>
-      <TabPanel value={value} index={3}>Llistat classes, com alumnes</TabPanel>
+      <TabPanel value={value} index={3}><Classroom /></TabPanel>
       <TabPanel value={value} index={4}><Teacher /></TabPanel>
       <TabPanel value={value} index={5}><Price /></TabPanel>
     </Box>

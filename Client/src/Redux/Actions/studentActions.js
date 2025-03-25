@@ -25,7 +25,9 @@ import {
   FETCH_TEACHERS_SUCCESS,
   FETCH_TEACHERS_FAILURE,
   UPDATE_TEACHERS_SUCCESS,
-  UPDATE_TEACHERS_FAILURE
+  UPDATE_TEACHERS_FAILURE,
+  UPDATE_CLASSROOMS_SUCCESS,
+  UPDATE_CLASSROOMS_FAILURE
 } from './constants'
 
 export const fetchStudents = () => async (dispatch) => {
@@ -233,6 +235,22 @@ export const updateTeachers = (newTeachers) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: UPDATE_TEACHERS_FAILURE,
+      payload: error.message
+    })
+  }
+}
+
+export const updateClassrooms = (info) => async (dispatch) => {
+  console.log("...ejecutando...updateClassrooms(info)")
+  try {
+    const response = await axios.post('http://localhost:9999/api/classroom/update', info)
+    dispatch({
+      type: UPDATE_CLASSROOMS_SUCCESS,
+      payload: response.data
+    })
+  } catch (error) {
+    dispatch({
+      type: UPDATE_CLASSROOMS_FAILURE,
       payload: error.message
     })
   }
