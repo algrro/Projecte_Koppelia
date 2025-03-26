@@ -47,7 +47,7 @@ export default function MonthInvoice({ openModal, idStudent, setOpenModalMonth }
             >
                 <Typography component="div" variant="h6">Pagament mes</Typography>
                 <Typography component="div" sx={{ mt: 2 }}>
-                    <Box>{"Total factura a pagar: "}<strong>{`${invoice.Price} €`}</strong></Box>
+                    <Box>{"Total factura a pagar: "}<strong>{`${invoice.total_price} €`}</strong></Box>
                 </Typography>
                 <FormControlLabel
                     control={

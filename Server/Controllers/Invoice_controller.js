@@ -55,19 +55,15 @@ exports.addInvoice = async (req, res) => {
                         return priceObjectInfo
                     })
                 )
-                const result = invoiceCalculator.CalculateTotalConcept(
-                    priceData,
-                    studentInfo.family_disc
-                )
-
+                const result = invoiceCalculator.CalculateInvoice(priceData)
                 const newInvoice = await Invoice.create({
-                    total: result.Price,
-                    concept: result.Concept,
+                    total: result.total_price,
+                    concept: result.details.join("; "),
                     date: new DATEONLY(),
                     id_student: studentInfo.id_student,
                 })
                 //await studentData.update({ month_paid: true })
-                const invoice = {...result, name: studentInfo.name, surname: studentInfo.surname, date: new Date(), idStudent: studentInfo.id_student, idInvoice: newInvoice.id_invoice}
+                const invoice = { ...result, name: studentInfo.name, surname: studentInfo.surname, date: new Date(), idStudent: studentInfo.id_student, idInvoice: newInvoice.id_invoice }
                 res.status(200).send(invoice)
             } else {
                 res.status(200).send(`La alumna ${studentInfo.name} ${studentInfo.surname} no está matriculada en ninguna clase`)
