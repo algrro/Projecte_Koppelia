@@ -8,7 +8,7 @@ import { blue } from '@mui/material/colors'
 export default function Teacher() {
     const dispatch = useDispatch()
 
-    const { teachers } = useSelector(state => state.student)
+    const { teachers } = useSelector(state => state.global)
     const [teachersInfo, setTeachersInfo] = useState(teachers)
 
     const handleChange = (id_teacher, value) => {

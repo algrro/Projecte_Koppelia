@@ -62,14 +62,14 @@ const studentReducer = (state = initialState, action) => {
     case FETCH_STUDENTS_SUCCESS:
       return { ...state, students: action.payload }
     case CREATE_STUDENT_SUCCESS:
-      return { ...state, students: [...state.students, action.payload] }
+      return { ...state, students: [...state.globals, action.payload] }
     case EDIT_STUDENT_SUCCESS:
       return {
         ...state,
-        students: state.students.map(student => student.id_student === action.payload.id_student ? action.payload : student)
+        students: state.globals.map(student => student.id_student === action.payload.id_student ? action.payload : student)
       }
     case DELETE_STUDENT_SUCCESS:
-      return { ...state, students: [...state.students.filter((item) => item.id_student !== action.payload)] }
+      return { ...state, students: [...state.globals.filter((item) => item.id_student !== action.payload)] }
     case INVOICE_STUDENT_SUCCESS:
       return {
         ...state,
@@ -91,7 +91,7 @@ const studentReducer = (state = initialState, action) => {
       return {
         ...state,
         studentsClassroom: [
-          ...state.studentsClassroom.filter(entry => entry.id_student !== action.payload.id_student),
+          ...state.globalsClassroom.filter(entry => entry.id_student !== action.payload.id_student),
           ...action.payload.id_enrolled.map(classId => ({
             id_student: action.payload.id_student,
             id_classroom: classId

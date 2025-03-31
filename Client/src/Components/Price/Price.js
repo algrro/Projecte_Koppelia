@@ -7,7 +7,7 @@ import { blue } from '@mui/material/colors'
 
 export default function Price() {
     const dispatch = useDispatch()
-    const { prices } = useSelector(state => state.student)
+    const { prices } = useSelector(state => state.global)
 
     const [updatedPrices, setUpdatedPrices] = useState(() => prices)
 

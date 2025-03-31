@@ -7,7 +7,7 @@ import { blue } from '@mui/material/colors'
 export default function ModalSign({ openModal, idStudent, setOpenModalSign }) {
 
     const dispatch = useDispatch()
-    const { classrooms, studentsClassroom } = useSelector(state => state.student)
+    const { classrooms, studentsClassroom } = useSelector(state => state.global)
     const [selectedRows, setSelectedRows] = useState(studentsClassroom.filter((element) => element.id_student === idStudent).map((item) => item.id_classroom))
 
     const handleSelect = (id) => {

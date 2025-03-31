@@ -17,7 +17,7 @@ export default function StudentsInfo({ isSign }) {
     const [openModalDelete, setOpenModalDelete] = useState(false)
     const [openModalSign, setOpenModalSign] = useState(false)
     const [idStudent, setIdStudent] = useState(0)
-    const { students } = useSelector(state => state.student)
+    const { students } = useSelector(state => state.global)
 
     const handleDelete = (action) => {
         setOpenModalDelete(!openModalDelete)

@@ -8,10 +8,10 @@ import { blue } from '@mui/material/colors'
 export default function Classroom() {
     const dispatch = useDispatch()
 
-    const { classrooms } = useSelector(state => state.student)
-    const id_prices = useSelector(state => state.student.prices)
+    const { classrooms } = useSelector(state => state.global)
+    const id_prices = useSelector(state => state.global.prices)
     const memoizedIdPrices = useMemo(() => id_prices.map(info => info.id_price), [id_prices])
-    const id_teachers = useSelector(state => state.student.teachers)
+    const id_teachers = useSelector(state => state.global.teachers)
     const memoizedIdTeachers = useMemo(() => id_teachers.map(info => info.id_teacher), [id_teachers])
 
     const [classroomsInfo, setClassroomsInfo] = useState(classrooms)

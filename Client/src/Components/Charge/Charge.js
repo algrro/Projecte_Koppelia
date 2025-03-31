@@ -11,7 +11,7 @@ export default function Charge() {
     const [openModalMatricula, setOpenModalMatricula] = useState(false)
     const [openModalMonth, setOpenModalMonth] = useState(false)
     const [idStudent, setIdStudent] = useState(0)
-    const { students, studentsClassroom } = useSelector(state => state.student)
+    const { students, studentsClassroom } = useSelector(state => state.global)
     return (
         <>
             <TableContainer component={Paper}>
