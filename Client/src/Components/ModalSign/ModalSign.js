@@ -1,7 +1,8 @@
 import React, { useState } from "react"
 import { Modal, Box, Typography, Button, Checkbox, TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody } from "@mui/material"
 import { useDispatch, useSelector } from "react-redux"
-import { signClassrooms } from "../../Redux/Actions/studentActions"
+import { signClassrooms } from "../../Redux/Actions/globalActions"
+import { blue } from '@mui/material/colors'
 
 export default function ModalSign({ openModal, idStudent, setOpenModalSign }) {
 
@@ -48,11 +49,11 @@ export default function ModalSign({ openModal, idStudent, setOpenModalSign }) {
                     <Table stickyHeader>
                         <TableHead>
                             <TableRow>
-                                <TableCell>Dia</TableCell>
-                                <TableCell>Classe</TableCell>
-                                <TableCell>Hora inici</TableCell>
-                                <TableCell>Hora acabament</TableCell>
-                                <TableCell>Seleccionar</TableCell>
+                                <TableCell sx={{ color: blue[800], fontWeight: "bold" }}>Dia</TableCell>
+                                <TableCell sx={{ color: blue[800], fontWeight: "bold" }}>Classe</TableCell>
+                                <TableCell sx={{ color: blue[800], fontWeight: "bold" }}>Hora inici</TableCell>
+                                <TableCell sx={{ color: blue[800], fontWeight: "bold" }}>Hora finalització</TableCell>
+                                <TableCell sx={{ color: blue[800], fontWeight: "bold" }}>Seleccionar</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>

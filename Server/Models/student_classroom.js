@@ -12,8 +12,8 @@ const StudentClassroom = sq.define("student_classroom", {
         primaryKey: true,
     }
 }, {
-        tableName: 'student_classroom',
-        timestamps: false
-    })
+    tableName: 'student_classroom',
+    timestamps: false
+})
 
 module.exports = StudentClassroom

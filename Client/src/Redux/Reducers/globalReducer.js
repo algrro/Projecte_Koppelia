@@ -36,7 +36,7 @@ const initialState = {
   prices: [],
   teachers: [],
   currentStudent: {
-    name: 'Nuevo',
+    name: '',
     surname: '',
     matricula_paid: false,
     month_paid: false,
@@ -60,43 +60,34 @@ const initialState = {
 const studentReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_STUDENTS_SUCCESS:
-      console.log(action.type)
       return { ...state, students: action.payload }
     case CREATE_STUDENT_SUCCESS:
-      console.log(action.type)
       return { ...state, students: [...state.students, action.payload] }
     case EDIT_STUDENT_SUCCESS:
-      console.log(action.type)
       return {
         ...state,
         students: state.students.map(student => student.id_student === action.payload.id_student ? action.payload : student)
       }
     case DELETE_STUDENT_SUCCESS:
-      console.log(action.type)
       return { ...state, students: [...state.students.filter((item) => item.id_student !== action.payload)] }
     case INVOICE_STUDENT_SUCCESS:
-      console.log(action.type)
       return {
         ...state,
         currentInvoice: { ...action.payload }
       }
     case DELETE_INVOICE_SUCCESS:
-      console.log(action.type)
       return { ...state, currentInvoice: { name: '', total: 0, concept: '', date: '' } }
     case LIST_CLASSROOMS_SUCCESS:
-      console.log(action.type)
       return {
         ...state,
         classrooms: action.payload
       }
     case STUDENTS_CLASSROOMS_SUCCESS:
-      console.log(action.type)
       return {
         ...state,
         studentsClassroom: action.payload
       }
     case SIGN_CLASSROOMS_SUCCESS:
-      console.log(action.type);
       return {
         ...state,
         studentsClassroom: [
@@ -108,19 +99,14 @@ const studentReducer = (state = initialState, action) => {
         ]
       }
     case FETCH_PRICES_SUCCESS:
-      console.log(action.type)
       return { ...state, prices: action.payload }
     case UPDATE_PRICES_SUCCESS:
-      console.log(action.type)
       return { ...state, prices: action.payload }
     case FETCH_TEACHERS_SUCCESS:
-      console.log(action.type)
       return { ...state, teachers: action.payload }
     case UPDATE_TEACHERS_SUCCESS:
-      console.log(action.type)
       return { ...state, teachers: action.payload }
     case UPDATE_CLASSROOMS_SUCCESS:
-      console.log(action.type)
       return { ...state, classrooms: action.payload }
     case FETCH_STUDENTS_FAILURE:
     case CREATE_STUDENT_FAILURE:

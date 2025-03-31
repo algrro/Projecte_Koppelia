@@ -2,8 +2,8 @@ import React, { useState, useMemo } from "react"
 import { Box, Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TextField, Select, MenuItem, IconButton } from "@mui/material"
 import DeleteIcon from "@mui/icons-material/Delete"
 import { useDispatch, useSelector } from "react-redux"
-import { updateClassrooms } from "../../Redux/Actions/studentActions"
-
+import { updateClassrooms } from "../../Redux/Actions/globalActions"
+import { blue } from '@mui/material/colors'
 
 export default function Classroom() {
     const dispatch = useDispatch()
@@ -16,7 +16,7 @@ export default function Classroom() {
 
     const [classroomsInfo, setClassroomsInfo] = useState(classrooms)
 
-    const daysOfWeek = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"]
+    const daysOfWeek = ["Dilluns", "Dimarts", "Dimecres", "Dijous", "Divendres", "Dissabte", "Diumenge"]
 
     const hours = Array.from({ length: 48 }, (_, i) => `${Math.floor(i / 2)}:${i % 2 === 0 ? "00" : "30"}`)
 
@@ -49,13 +49,13 @@ export default function Classroom() {
                 <Table>
                     <TableHead>
                         <TableRow>
-                            <TableCell>Nom</TableCell>
-                            <TableCell>Dia</TableCell>
-                            <TableCell>Hora Inici</TableCell>
-                            <TableCell>Hora Fi</TableCell>
-                            <TableCell>ID Preu</TableCell>
-                            <TableCell>ID Professor</TableCell>
-                            <TableCell>Accions</TableCell>
+                            <TableCell sx={{ color: blue[800], fontWeight: "bold" }}>Nom</TableCell>
+                            <TableCell sx={{ color: blue[800], fontWeight: "bold" }}>Dia</TableCell>
+                            <TableCell sx={{ color: blue[800], fontWeight: "bold" }}>Hora Inici</TableCell>
+                            <TableCell sx={{ color: blue[800], fontWeight: "bold" }}>Hora Finalització</TableCell>
+                            <TableCell sx={{ color: blue[800], fontWeight: "bold" }}>ID Preu</TableCell>
+                            <TableCell sx={{ color: blue[800], fontWeight: "bold" }}>ID Professor</TableCell>
+                            <TableCell sx={{ color: blue[800], fontWeight: "bold" }}>Accions</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>

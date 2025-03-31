@@ -67,33 +67,6 @@ exports.updatePrices = async (req, res) => {
         const allPrices = await Price.findAll({ order: [["id_price", "ASC"]] })
         res.status(200).send(allPrices)
     } catch (err) {
-        console.error("Error al actualizar precios:", err)
         res.status(500).send({ err_message: err.message })
     }
-}
-
-exports.addPrice = (req, res) => {
-    Price.create({
-        unit_price: req.body.unit_price,
-        disc_2: req.body.disc_2,
-        disc_3: req.body.disc_3,
-        disc_4: req.body.disc_4,
-        disc_5: req.body.disc_5
-    })
-        .then(() => {
-            res.status(200).send("Se ha insertado el precio ")
-        })
-        .catch((err) => {
-            res.status(500).send({ err_message: err })
-        })
-}
-
-exports.deletePrice = (req, res) => {
-    Price.destroy({ where: { id_price: req.params.id_price } })
-        .then(() => {
-            res.status(200).send("Se ha eliminado el precio seleccionado.")
-        })
-        .catch((err) => {
-            res.status(500).send({ err_message: err })
-        })
 }

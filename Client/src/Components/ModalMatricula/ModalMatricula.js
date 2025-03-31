@@ -1,13 +1,13 @@
 import React from 'react'
 import { Modal, Box, Typography, Button } from '@mui/material'
 import { useSelector, useDispatch } from 'react-redux'
-import { editStudent } from '../../Redux/Actions/studentActions'
+import { editStudent } from '../../Redux/Actions/globalActions'
 
 export default function ModalMatricula({ openModal, idStudent, setOpenModalMatricula }) {
 
     const dispatch = useDispatch()
     const student = useSelector(item => idStudent === 0 ? item.student.currentStudent : item.student.students.find((element) => element.id_student === idStudent))
-      
+
     const handlePay = (guardar) => {
         if (guardar) {
             const updatedDate = { ...student, matricula_paid: true }
@@ -40,8 +40,8 @@ export default function ModalMatricula({ openModal, idStudent, setOpenModalMatri
                         {" ha pagat la matrícula?"}
                     </Box>
                 </Typography>
-                <Button onClick={() => handlePay(false)} sx={{ mt: 2 }} variant="outlined">No</Button>
-                <Button onClick={() => handlePay(true)} sx={{ mt: 2 }} variant="outlined">Sí, ja ha pagat</Button>
+                <Button onClick={() => handlePay(false)} sx={{ mt: 2, mr: 2 }} variant="outlined">No</Button>
+                <Button onClick={() => handlePay(true)} sx={{ mt: 2 }} variant="contained">Sí, ja ha pagat</Button>
             </Box>
         </Modal>
     )

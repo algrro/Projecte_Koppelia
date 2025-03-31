@@ -6,19 +6,6 @@ const Classroom = require("../Models/classroom")
 const Price = require("../Models/price")
 const { DATEONLY } = require("sequelize")
 
-exports.getInvoices = (_, res) => {
-    Invoice.findAll()
-        .then((response) => {
-            let arrayResponse = JSON.parse(JSON.stringify(response))
-            res.status(200).send({ invoices: arrayResponse })
-        })
-        .catch((err) => {
-            res
-                .status(500)
-                .send({ err_message: err })
-        })
-}
-
 exports.deleteInvoice = async (req, res) => {
     try {
         let invoiceData = await Invoice.findByPk(req.params.id_invoice)
@@ -62,7 +49,7 @@ exports.addInvoice = async (req, res) => {
                     date: new DATEONLY(),
                     id_student: studentInfo.id_student,
                 })
-                //await studentData.update({ month_paid: true })
+
                 const invoice = { ...result, name: studentInfo.name, surname: studentInfo.surname, date: new Date(), idStudent: studentInfo.id_student, idInvoice: newInvoice.id_invoice }
                 res.status(200).send(invoice)
             } else {

@@ -29,8 +29,8 @@ const Invoice = sq.define("invoice", {
         primaryKey: false,
     }
 }, {
-        tableName: 'invoice',
-        timestamps: false
-    })
+    tableName: 'invoice',
+    timestamps: false
+})
 
 module.exports = Invoice

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Modal, Box, Typography, Button, Checkbox, FormControlLabel } from '@mui/material'
 import { useSelector, useDispatch } from 'react-redux'
-import { addInvoice, editStudent, deleteInvoice } from '../../Redux/Actions/studentActions'
+import { addInvoice, editStudent, deleteInvoice } from '../../Redux/Actions/globalActions'
 import { generatePDF } from '../../Utils/generatePdf'
 
 export default function MonthInvoice({ openModal, idStudent, setOpenModalMonth }) {
@@ -58,9 +58,27 @@ export default function MonthInvoice({ openModal, idStudent, setOpenModalMonth }
                         />
                     }
                     label="Imprimir pdf factura"
+                    sx={{
+                        '& .MuiFormControlLabel-label': {
+                            fontSize: 12,
+                        }
+                    }}
                 />
-                <Button onClick={() => handlePay(false)} sx={{ mt: 2 }} variant="outlined">No</Button>
-                <Button onClick={() => handlePay(true)} sx={{ mt: 2 }} variant="outlined">Paga</Button>
+                <Button
+                    onClick={() => handlePay(false)}
+                    sx={{ mt: 2, mr: 2 }}
+                    variant="outlined"
+                >
+                    Cancel·lar
+                </Button>
+
+                <Button
+                    onClick={() => handlePay(true)}
+                    sx={{ mt: 2 }}
+                    variant="contained"
+                >
+                    Paga
+                </Button>
             </Box>
         </Modal>
     )

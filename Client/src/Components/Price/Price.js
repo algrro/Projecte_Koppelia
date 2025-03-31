@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
-import { Box, TextField, Button, TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody, IconButton } from "@mui/material"
+import { Box, TextField, Button, TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody, IconButton, InputAdornment } from "@mui/material"
 import DeleteIcon from "@mui/icons-material/Delete"
-import { updatePrices } from "../../Redux/Actions/studentActions"
+import { updatePrices } from "../../Redux/Actions/globalActions"
+import { blue } from '@mui/material/colors'
 
 export default function Price() {
     const dispatch = useDispatch()
@@ -51,13 +52,13 @@ export default function Price() {
                 <Table>
                     <TableHead>
                         <TableRow>
-                            <TableCell sx={{ py: 3 }}>Id_preu</TableCell>
-                            <TableCell sx={{ py: 3 }}>Preu unitari</TableCell>
-                            <TableCell sx={{ py: 3 }}>Desc. 2 classes</TableCell>
-                            <TableCell sx={{ py: 3 }}>Desc. 3 classes</TableCell>
-                            <TableCell sx={{ py: 3 }}>Desc. 4 classes</TableCell>
-                            <TableCell sx={{ py: 3 }}>Desc. 5 classes</TableCell>
-                            <TableCell sx={{ py: 3 }}>Eliminar preu</TableCell>
+                            <TableCell sx={{ py: 3, color: blue[800], fontWeight: "bold" }}>Id_preu</TableCell>
+                            <TableCell sx={{ py: 3, color: blue[800], fontWeight: "bold" }}>Preu unitari</TableCell>
+                            <TableCell sx={{ py: 3, color: blue[800], fontWeight: "bold" }}>Desc. 2 classes</TableCell>
+                            <TableCell sx={{ py: 3, color: blue[800], fontWeight: "bold" }}>Desc. 3 classes</TableCell>
+                            <TableCell sx={{ py: 3, color: blue[800], fontWeight: "bold" }}>Desc. 4 classes</TableCell>
+                            <TableCell sx={{ py: 3, color: blue[800], fontWeight: "bold" }}>Desc. 5 classes</TableCell>
+                            <TableCell sx={{ py: 3, color: blue[800], fontWeight: "bold" }}>Eliminar preu</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -72,6 +73,9 @@ export default function Price() {
                                         onChange={(e) => handleChange(item.id_price, "unit_price", e.target.value)}
                                         fullWidth
                                         inputProps={{ step: "0.01" }}
+                                        InputProps={{
+                                            endAdornment: <InputAdornment position="end">€</InputAdornment>,
+                                        }}
                                     />
                                 </TableCell>
                                 <TableCell sx={{ py: 3 }}>
@@ -82,6 +86,9 @@ export default function Price() {
                                         onChange={(e) => handleChange(item.id_price, "disc_2", e.target.value)}
                                         fullWidth
                                         inputProps={{ step: "0.01" }}
+                                        InputProps={{
+                                            endAdornment: <InputAdornment position="end">%</InputAdornment>,
+                                        }}
                                     />
                                 </TableCell>
                                 <TableCell sx={{ py: 3 }}>
@@ -92,6 +99,9 @@ export default function Price() {
                                         onChange={(e) => handleChange(item.id_price, "disc_3", e.target.value)}
                                         fullWidth
                                         inputProps={{ step: "0.01" }}
+                                        InputProps={{
+                                            endAdornment: <InputAdornment position="end">%</InputAdornment>,
+                                        }}
                                     />
                                 </TableCell>
                                 <TableCell sx={{ py: 3 }}>
@@ -102,6 +112,9 @@ export default function Price() {
                                         onChange={(e) => handleChange(item.id_price, "disc_4", e.target.value)}
                                         fullWidth
                                         inputProps={{ step: "0.01" }}
+                                        InputProps={{
+                                            endAdornment: <InputAdornment position="end">%</InputAdornment>,
+                                        }}
                                     />
                                 </TableCell>
                                 <TableCell sx={{ py: 3 }}>
@@ -112,6 +125,9 @@ export default function Price() {
                                         onChange={(e) => handleChange(item.id_price, "disc_5", e.target.value)}
                                         fullWidth
                                         inputProps={{ step: "0.01" }}
+                                        InputProps={{
+                                            endAdornment: <InputAdornment position="end">%</InputAdornment>,
+                                        }}
                                     />
                                 </TableCell>
                                 <TableCell>

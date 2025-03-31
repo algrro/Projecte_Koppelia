@@ -30,10 +30,11 @@ import {
   UPDATE_CLASSROOMS_FAILURE
 } from './constants'
 
+const URI = "http://localhost:9999/api"
+
 export const fetchStudents = () => async (dispatch) => {
-  console.log("...ejecutando...fetchStudents()")
   try {
-    const response = await axios.get('http://localhost:9999/api/student')
+    const response = await axios.get(`${URI}/student`)
     dispatch({
       type: FETCH_STUDENTS_SUCCESS,
       payload: response.data
@@ -47,9 +48,8 @@ export const fetchStudents = () => async (dispatch) => {
 }
 
 export const addStudent = (studentData) => async (dispatch) => {
-  console.log("...ejecutando...addStudent(data)")
   try {
-    const response = await axios.post('http://localhost:9999/api/student/add_student', { ...studentData, birth_date: new Date(studentData.birth_date) })
+    const response = await axios.post(`${URI}/student/add_student`, { ...studentData, birth_date: new Date(studentData.birth_date) })
     dispatch({
       type: CREATE_STUDENT_SUCCESS,
       payload: response.data
@@ -63,9 +63,8 @@ export const addStudent = (studentData) => async (dispatch) => {
 }
 
 export const editStudent = (studentEdited) => async (dispatch) => {
-  console.log("...ejecutando...editStudent(data)")
   try {
-    const response = await axios.post(`http://localhost:9999/api/student/edit_student/${studentEdited.id_student}`, { ...studentEdited, birth_date: new Date(studentEdited.birth_date) })
+    const response = await axios.post(`${URI}/student/edit_student/${studentEdited.id_student}`, { ...studentEdited, birth_date: new Date(studentEdited.birth_date) })
     dispatch({
       type: EDIT_STUDENT_SUCCESS,
       payload: response.data
@@ -79,9 +78,8 @@ export const editStudent = (studentEdited) => async (dispatch) => {
 }
 
 export const deleteStudent = (id_student) => async (dispatch) => {
-  console.log("...ejecutando...deleteStudent(id_student)")
   try {
-    const response = await axios.delete(`http://localhost:9999/api/student/${id_student}`)
+    const response = await axios.delete(`${URI}/student/${id_student}`)
     dispatch({
       type: DELETE_STUDENT_SUCCESS,
       payload: response.data
@@ -95,9 +93,8 @@ export const deleteStudent = (id_student) => async (dispatch) => {
 }
 
 export const addInvoice = (idStudent) => async (dispatch) => {
-  console.log("...ejecutando...addInvoice()")
   try {
-    const response = await axios.post(`http://localhost:9999/api/invoice/${idStudent}`)
+    const response = await axios.post(`${URI}/invoice/${idStudent}`)
     dispatch({
       type: INVOICE_STUDENT_SUCCESS,
       payload: response.data
@@ -113,9 +110,8 @@ export const addInvoice = (idStudent) => async (dispatch) => {
 }
 
 export const deleteInvoice = (id_invoice) => async (dispatch) => {
-  console.log("...ejecutando...deleteInvoice(id_invoice)")
   try {
-    const response = await axios.delete(`http://localhost:9999/api/invoice/${id_invoice}`)
+    const response = await axios.delete(`${URI}/invoice/${id_invoice}`)
     dispatch({
       type: DELETE_INVOICE_SUCCESS,
       payload: response.data
@@ -129,9 +125,8 @@ export const deleteInvoice = (id_invoice) => async (dispatch) => {
 }
 
 export const fetchClassrooms = () => async (dispatch) => {
-  console.log("...ejecutando...fetchClassrooms()")
   try {
-    const response = await axios.get('http://localhost:9999/api/classroom')
+    const response = await axios.get(`${URI}/classroom`)
     dispatch({
       type: LIST_CLASSROOMS_SUCCESS,
       payload: response.data
@@ -145,9 +140,8 @@ export const fetchClassrooms = () => async (dispatch) => {
 }
 
 export const fetchStudentClassrooms = () => async (dispatch) => {
-  console.log("...ejecutando...fetchStudentClassrooms()")
   try {
-    const response = await axios.get('http://localhost:9999/api/student_classroom')
+    const response = await axios.get(`${URI}/student_classroom`)
     dispatch({
       type: STUDENTS_CLASSROOMS_SUCCESS,
       payload: response.data
@@ -161,9 +155,8 @@ export const fetchStudentClassrooms = () => async (dispatch) => {
 }
 
 export const signClassrooms = (info) => async (dispatch) => {
-  console.log("...ejecutando...signClassrooms(info)")
   try {
-    const response = await axios.post('http://localhost:9999/api/student_classroom/sign', info)
+    const response = await axios.post(`${URI}/student_classroom/sign`, info)
     dispatch({
       type: SIGN_CLASSROOMS_SUCCESS,
       payload: response.data
@@ -177,9 +170,8 @@ export const signClassrooms = (info) => async (dispatch) => {
 }
 
 export const fetchPrices = () => async (dispatch) => {
-  console.log("...ejecutando...fetchPrices()")
   try {
-    const response = await axios.get('http://localhost:9999/api/price')
+    const response = await axios.get(`${URI}/price`)
     dispatch({
       type: FETCH_PRICES_SUCCESS,
       payload: response.data
@@ -193,9 +185,8 @@ export const fetchPrices = () => async (dispatch) => {
 }
 
 export const updatePrices = (newPrices) => async (dispatch) => {
-  console.log("...ejecutando...updatePrices(newPrices)")
   try {
-    const response = await axios.post('http://localhost:9999/api/price/update', newPrices)
+    const response = await axios.post(`${URI}/price/update`, newPrices)
     dispatch({
       type: UPDATE_PRICES_SUCCESS,
       payload: response.data
@@ -209,9 +200,8 @@ export const updatePrices = (newPrices) => async (dispatch) => {
 }
 
 export const fetchTeachers = () => async (dispatch) => {
-  console.log("...ejecutando...fetchTeachers()")
   try {
-    const response = await axios.get('http://localhost:9999/api/teacher')
+    const response = await axios.get(`${URI}/teacher`)
     dispatch({
       type: FETCH_TEACHERS_SUCCESS,
       payload: response.data
@@ -225,9 +215,8 @@ export const fetchTeachers = () => async (dispatch) => {
 }
 
 export const updateTeachers = (newTeachers) => async (dispatch) => {
-  console.log("...ejecutando...updateTeachers(newTeachers)")
   try {
-    const response = await axios.post('http://localhost:9999/api/teacher/update', newTeachers)
+    const response = await axios.post(`${URI}/teacher/update`, newTeachers)
     dispatch({
       type: UPDATE_TEACHERS_SUCCESS,
       payload: response.data
@@ -241,9 +230,8 @@ export const updateTeachers = (newTeachers) => async (dispatch) => {
 }
 
 export const updateClassrooms = (info) => async (dispatch) => {
-  console.log("...ejecutando...updateClassrooms(info)")
   try {
-    const response = await axios.post('http://localhost:9999/api/classroom/update', info)
+    const response = await axios.post(`${URI}/classroom/update`, info)
     dispatch({
       type: UPDATE_CLASSROOMS_SUCCESS,
       payload: response.data

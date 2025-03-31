@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, IconButton, TextField, Button, Box } from '@mui/material'
 import DeleteIcon from "@mui/icons-material/Delete"
 import { useSelector, useDispatch } from 'react-redux'
-import { updateTeachers } from '../../Redux/Actions/studentActions'
+import { updateTeachers } from '../../Redux/Actions/globalActions'
+import { blue } from '@mui/material/colors'
 
 export default function Teacher() {
     const dispatch = useDispatch()
@@ -43,8 +44,8 @@ export default function Teacher() {
                 <Table>
                     <TableHead>
                         <TableRow>
-                            <TableCell>Nom i cognoms</TableCell>
-                            <TableCell>{'Accions'}</TableCell>
+                            <TableCell sx={{ color: blue[800], fontWeight: "bold" }}>Nom i cognoms</TableCell>
+                            <TableCell sx={{ color: blue[800], fontWeight: "bold" }}>{'Accions'}</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>

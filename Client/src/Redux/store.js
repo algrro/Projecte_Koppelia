@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
-import studentReducer from './Reducers/studentReducer'
+import globalReducer from './Reducers/globalReducer'
 
 const store = configureStore({
     reducer: {
-        student: studentReducer
+        global: globalReducer
     }
 })
 export default store

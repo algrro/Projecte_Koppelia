@@ -4,6 +4,7 @@ import PaymentIcon from '@mui/icons-material/Payment'
 import { useSelector } from 'react-redux'
 import ModalMatricula from '../ModalMatricula/ModalMatricula'
 import MonthInvoice from '../MonthInvoice/MonthInvoice'
+import { blue } from '@mui/material/colors'
 
 export default function Charge() {
 
@@ -17,13 +18,14 @@ export default function Charge() {
                 <Table>
                     <TableHead>
                         <TableRow>
-                            <TableCell>Nom i cognoms</TableCell>
-                            <TableCell>Pagament matrícula</TableCell>
-                            <TableCell>Pagament mes</TableCell>
+                            <TableCell sx={{ color: blue[800], fontWeight: "bold" }}>Nom i cognoms</TableCell>
+                            <TableCell sx={{ color: blue[800], fontWeight: "bold" }}>Pagament matrícula</TableCell>
+                            <TableCell sx={{ color: blue[800], fontWeight: "bold" }}>Pagament mes</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         {students
+                            .sort((a, b) => a.name.localeCompare(b.name))
                             .filter(row => (!row.month_paid || !row.matricula_paid) && studentsClassroom.some(item => item.id_student === row.id_student))
                             .map((row) => (
                                 <TableRow key={row.id_student}>

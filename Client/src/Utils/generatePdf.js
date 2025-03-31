@@ -8,7 +8,7 @@ export const generatePDF = (data) => {
     doc.text(`Data d'emissió: ${data.date}`, 10, 30)
     doc.text(`Nom: ${data.name} ${data.surname}`, 10, 40)
     doc.text(`Nombre de classes totals: ${data.total_classes}`, 10, 50)
-    const conceptText = data.details.map(detail => 
+    const conceptText = data.details.map(detail =>
         `Clase: ${detail.num_classes}, Precio: ${detail.unit_price}€, Descuento: ${detail.discount}, Final: ${detail.final_price}€`
     ).join("\n")
     const conceptLines = doc.splitTextToSize(conceptText, 180)

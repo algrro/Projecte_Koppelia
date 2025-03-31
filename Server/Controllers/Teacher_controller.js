@@ -55,26 +55,6 @@ exports.updateTeachers = async (req, res) => {
 		const allTeachers = await Teacher.findAll({ order: [["id_teacher", "ASC"]] })
 		res.status(200).send(allTeachers)
 	} catch (err) {
-		console.error("Error al actualizar profesores:", err)
 		res.status(500).send({ err_message: err.message })
 	}
 }
-
-exports.addTeacher = (req, res) => {
-	Teacher.create({ name: req.body.name })
-		.then(() => {
-			res.status(200).send(`New teacher: ${req.body.name}`)
-		})
-		.catch((err) =>
-			res.status(500).send({ err_message: err }))
-}
-
-exports.deleteTeacher = ((req, res) => {
-	Teacher.destroy({ where: { id_teacher: req.params.id_teacher } })
-		.then(() => {
-			res.status(200).send(`Se ha eliminado el profesor ${req.params.id_teacher}`)
-		})
-		.catch((err) => {
-			res.status(500).send({ err_message: err })
-		})
-})

@@ -33,9 +33,9 @@ const Price = sq.define("price", {
         primaryKey: false,
     }
 }, {
-        tableName: 'price',
-        timestamps: false
-    }
+    tableName: 'price',
+    timestamps: false
+}
 )
 
 module.exports = Price
