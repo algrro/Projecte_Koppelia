@@ -19,7 +19,7 @@ export default function ModalAdd({ openModal, idStudent, setOpenModalEditAdd }) 
 
     const handleEditOrAdd = (guardar) => {
         if (guardar) {
-            //función validar formulario
+            
             idStudent === 0 ? dispatch(addStudent(formData)) : dispatch(editStudent(formData))
         }
         setOpenModalEditAdd(false)
@@ -33,21 +33,21 @@ export default function ModalAdd({ openModal, idStudent, setOpenModalEditAdd }) 
                     top: "50%",
                     left: "50%",
                     transform: "translate(-50%, -50%)",
-                    width: 400,
+                    width: 600,
                     bgcolor: "background.paper",
                     boxShadow: 24,
                     p: 4,
                     borderRadius: 2,
                 }}
             >
-                <Typography component="div" variant="h6">{idStudent === 0 ? 'Afegir estudiant' : `Editar: ${student.name} ${student.surname}.`}</Typography>
+                <Typography component="div" variant="h5" sx={{ fontWeight: 'bold', textAlign: 'center', mb: 2 }}>{idStudent === 0 ? 'Afegir estudiant' : `Editar: ${student.name} ${student.surname}.`}</Typography>
                 <Typography component="div" sx={{ mt: 2 }}>
-                    <Box sx={{ width: '100%', maxWidth: 700, margin: 'auto', padding: 2, backgroundColor: 'lightblue' }}>
+                    <Box sx={{  maxWidth: 900, margin: 'auto', padding: 3, backgroundColor: '#f1f8ff', borderRadius: 2 }}>
                         <form>
-                        {/* <form onSubmit={handleSubmit}> */}
+                        {}
                             <Grid container spacing={2}>
                                 
-                                {/* Campo para el nombre del estudiante */}
+                                {}
                                 <Grid item xs={12}>
                                     <TextField
                                         label="Nom"
@@ -56,10 +56,11 @@ export default function ModalAdd({ openModal, idStudent, setOpenModalEditAdd }) 
                                         name="name"
                                         value={formData.name}
                                         onChange={handleChange}
+                                        sx={{ fontSize: 16 }}
                                     />
                                 </Grid>
 
-                                {/* Campo para el apellido del estudiante */}
+                                {}
                                 <Grid item xs={12}>
                                     <TextField
                                         label="Cognoms"
@@ -68,6 +69,7 @@ export default function ModalAdd({ openModal, idStudent, setOpenModalEditAdd }) 
                                         name="surname"
                                         value={formData.surname}
                                         onChange={handleChange}
+                                        sx={{ fontSize: 16 }}
                                     />
                                 </Grid>
 
@@ -81,6 +83,7 @@ export default function ModalAdd({ openModal, idStudent, setOpenModalEditAdd }) 
                                             />
                                         }
                                         label="Matrícula pagada"
+                                        sx={{ fontSize: 16 }}
                                     />
                                 </Grid>
 
@@ -94,6 +97,7 @@ export default function ModalAdd({ openModal, idStudent, setOpenModalEditAdd }) 
                                             />
                                         }
                                         label="Mes pagat"
+                                        sx={{ fontSize: 16 }}
                                     />
                                 </Grid>
 
@@ -107,6 +111,7 @@ export default function ModalAdd({ openModal, idStudent, setOpenModalEditAdd }) 
                                             />
                                         }
                                         label="Autoritza fotografies"
+                                        sx={{ fontSize: 16 }}
                                     />
                                 </Grid>
 
@@ -117,9 +122,11 @@ export default function ModalAdd({ openModal, idStudent, setOpenModalEditAdd }) 
                                                 checked={formData.family_disc}
                                                 onChange={handleChange}
                                                 name="family_disc"
+                                                sx={{ color: '#1976d2' }}
                                             />
                                         }
                                         label="Descompte familiar"
+                                        sx={{ fontSize: 16 }}
                                     />
                                 </Grid>
 
@@ -127,19 +134,26 @@ export default function ModalAdd({ openModal, idStudent, setOpenModalEditAdd }) 
                                     <FormControlLabel
                                         control={
                                             <TextField
-                                                label="Data de naixement"
+                                                
                                                 type="date"
                                                 fullWidth
                                                 variant="outlined"
                                                 name="birth_date"
                                                 value={formData.birth_date || ''}
                                                 onChange={handleChange}
-                                                //InputLabelProps={{
-                                                  //  shrink: true,
-                                                //}}
+                                                sx={{
+                                                    fontSize: 16,
+                                                    '& input': {
+                                                        fontSize: 16,
+                                                    },
+                                                }}
+                                                InputLabelProps={{
+                                                    shrink: true,
+                                                }}
                                             />
                                         }
                                         label="Data de naixement"
+                                        labelPlacement="top"
                                     />
                                 </Grid>
 
@@ -147,10 +161,12 @@ export default function ModalAdd({ openModal, idStudent, setOpenModalEditAdd }) 
                                     <FormControlLabel
                                         control={
                                             <TextField
+                                                
                                                 fullWidth
                                                 name="email"
                                                 value={formData.email || ""}
                                                 onChange={handleChange}
+                                                sx={{ fontSize: 16 }}
                                             />
                                         }
                                         label="Email"
@@ -166,6 +182,7 @@ export default function ModalAdd({ openModal, idStudent, setOpenModalEditAdd }) 
                                                 name="phone"
                                                 value={formData.phone || ""}
                                                 onChange={handleChange}
+                                                sx={{ fontSize: 16 }}
                                             />
                                         }
                                         label="Telèfon"
@@ -181,9 +198,10 @@ export default function ModalAdd({ openModal, idStudent, setOpenModalEditAdd }) 
                                                 name="tutor"
                                                 value={formData.tutor || ""}
                                                 onChange={handleChange}
+                                                sx={{ fontSize: 16 }}
                                             />
                                         }
-                                        label="Tutor"
+                                        label="Tutor/a"
                                         labelPlacement="top"
                                     />
                                 </Grid>
@@ -196,23 +214,14 @@ export default function ModalAdd({ openModal, idStudent, setOpenModalEditAdd }) 
                                                 name="contacto_tutor"
                                                 value={formData.contacto_tutor || ""}
                                                 onChange={handleChange}
+                                                sx={{ fontSize: 16 }}
                                             />
                                         }
-                                        label="Contacte del tutor"
+                                        label="Contacte tutor/a"
                                         labelPlacement="top"
                                     />
                                 </Grid>
-                                {/* <Grid item xs={12}>
-                                    <Button type="submit" variant="contained" color="primary" fullWidth onClick={() => setActionType('cancelar')}>
-                                        Cancelar
-            </Button>
-                                </Grid>
-
-                                <Grid item xs={12}>
-                                    <Button type="submit" variant="contained" color="primary" fullWidth onClick={() => setActionType('guardar')}>
-                                        Guardar cambios
-            </Button>
-                                </Grid> */}
+                                {}
 
                             </Grid>
                         </form>

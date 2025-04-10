@@ -36,7 +36,7 @@ export default function StudentsInfo({ isSign }) {
                             <TableHead>
                                 <TableRow>
                                     <TableCell>Nom i cognoms</TableCell>
-                                    {/* <TableCell>Pagament matrícula</TableCell> */}
+                                    {}
                                     <TableCell>{!isSign ? 'Accions' : 'Matricular'}</TableCell>
                                 </TableRow>
                             </TableHead>
@@ -44,7 +44,7 @@ export default function StudentsInfo({ isSign }) {
                                 {students.map((row) => (
                                     <TableRow key={row.id_student}>
                                         <TableCell>{`${row.name} ${row.surname}`}</TableCell>
-                                        {/* <TableCell>{row.matricula_paid ? "✅" : "🔴"}</TableCell> */}
+                                        {}
                                         {
                                             !isSign ?
                                                 (<TableCell>

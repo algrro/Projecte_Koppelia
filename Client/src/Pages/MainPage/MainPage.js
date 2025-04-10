@@ -24,14 +24,14 @@ export default function MainPage() {
 
   const dispatch = useDispatch()
 
-  //LLAMADA PRINCIPAL AL SERVIDOR PARA OBTENER LOS ESTADOS
+  //cridada per a obtenir dades
   useEffect(() => {
     dispatch(fetchStudents())
     dispatch(fetchClassrooms())
     dispatch(fetchStudentClassrooms())
     dispatch(fetchPrices())
     dispatch(fetchTeachers())
-  }, [dispatch]) // Solo se ejecuta una vez cuando el componente se monta
+  }, [dispatch]) // nomes quan monte el component
 
   const [value, setValue] = useState(0)
 
