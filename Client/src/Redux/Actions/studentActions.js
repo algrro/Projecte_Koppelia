@@ -27,7 +27,9 @@ import {
   UPDATE_TEACHERS_SUCCESS,
   UPDATE_TEACHERS_FAILURE,
   UPDATE_CLASSROOMS_SUCCESS,
-  UPDATE_CLASSROOMS_FAILURE
+  UPDATE_CLASSROOMS_FAILURE,
+  RESET_MONTH_SUCCESS,
+  RESET_MONTH_FAILURE
 } from './constants'
 
 export const fetchStudents = () => async (dispatch) => {
@@ -89,6 +91,22 @@ export const deleteStudent = (id_student) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: DELETE_STUDENT_FAILURE,
+      payload: error.message
+    })
+  }
+}
+// /reset_month_paid
+export const resetMonthPaid = () => async (dispatch) => {
+  console.log("...ejecutando...resetMonthPaid()")
+  try {
+    const response = await axios.get(`http://localhost:9999/api/student/reset_month_paid`)
+    dispatch({
+      type: RESET_MONTH_SUCCESS,
+      payload: response.data
+    })
+  } catch (error) {
+    dispatch({
+      type: RESET_MONTH_FAILURE,
       payload: error.message
     })
   }

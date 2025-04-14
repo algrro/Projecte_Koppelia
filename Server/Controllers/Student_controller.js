@@ -111,3 +111,17 @@ exports.editStudent = async (req, res) => {
 		res.status(500).send({ err_message: err })
 	}
 }
+
+exports.resetStudentsMonthPaid = (_, res) => {
+	Student.update(
+		{ month_paid: false },
+		{ where: {} }
+	)
+		.then(() => {
+			res.status(200).send({ message: 'Todos los estudiantes fueron actualizados correctamente.' })
+		})
+		.catch((err) => {
+			res.status(500).send({ err_message: err.message || err })
+		})
+}
+

@@ -26,7 +26,9 @@ import {
   UPDATE_TEACHERS_SUCCESS,
   UPDATE_TEACHERS_FAILURE,
   UPDATE_CLASSROOMS_SUCCESS,
-  UPDATE_CLASSROOMS_FAILURE
+  UPDATE_CLASSROOMS_FAILURE,
+  RESET_MONTH_SUCCESS,
+  RESET_MONTH_FAILURE
 } from '../Actions/constants'
 
 const initialState = {
@@ -79,6 +81,11 @@ const studentReducer = (state = initialState, action) => {
       return {
         ...state,
         currentInvoice: { ...action.payload }
+      }
+    case RESET_MONTH_SUCCESS:
+      console.log(action.type)
+      return {
+        ...state, students: state.students.map(student => ({ ...student, month_paid: false }))
       }
     case DELETE_INVOICE_SUCCESS:
       console.log(action.type)
@@ -136,6 +143,7 @@ const studentReducer = (state = initialState, action) => {
     case FETCH_TEACHERS_FAILURE:
     case UPDATE_TEACHERS_FAILURE:
     case UPDATE_CLASSROOMS_FAILURE:
+    case RESET_MONTH_FAILURE:
       return { ...state, error: action.payload }
     default:
       return state
