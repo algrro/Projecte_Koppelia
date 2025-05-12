@@ -34,7 +34,15 @@ exports.signUpStudentClass = async (req, res) => {
                 }
             }
         }
-        res.status(200).send({ id_student, id_enrolled: enrolledClassrooms })
+       // res.status(200).send({ id_student, id_enrolled: enrolledClassrooms })
+       const allEnrollments = await StudentClassroom.findAll({
+        where: { id_student }
+    })
+    
+    res.status(200).send({
+        id_student,
+        id_enrolled: allEnrollments.map(e => e.id_classroom)
+    })
     } catch (err) {
         res.status(500).send({ err_message: err })
     }
